@@ -13,8 +13,8 @@ import Contact from '../pages/Contact.jsx'
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
         <Route path="/kitesurfing" element={<Kitesurfing />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/rooms" element={<Rooms />} />
