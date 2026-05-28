@@ -10,7 +10,7 @@
 
 .home-hero {
   position: relative;
-  min-height: clamp(620px, 82vh, 820px);
+  min-height: clamp(540px, 72vh, 700px);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -20,14 +20,12 @@
 
 .home-hero::after {
   position: absolute;
-  right: -4vw;
+  right: 0;
   bottom: -1px;
-  left: -4vw;
-  height: clamp(54px, 9vw, 108px);
+  left: 0;
+  height: 1px;
   content: '';
   background: #fbf4ec;
-  border-radius: 0 0 50% 50% / 0 0 100% 100%;
-  transform: rotate(180deg);
   z-index: 2;
 }
 
@@ -53,7 +51,7 @@
 }
 
 .home-brand-mark span {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-sans);
   font-size: clamp(2.8rem, 7vw, 5.4rem);
   font-weight: 700;
   line-height: 0.78;
@@ -62,7 +60,7 @@
 
 .home-brand-mark strong {
   margin-top: 8px;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-sans);
   font-size: clamp(1.35rem, 3vw, 2.4rem);
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -75,6 +73,7 @@
   font-weight: 800;
   letter-spacing: 0.22em;
   text-transform: uppercase;
+  font-family: var(--font-sans);
 }
 
 .home-hero__content {
@@ -92,7 +91,7 @@
 .home-retreats h2,
 .home-testimonial h2 {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-sans);
   font-weight: 500;
   letter-spacing: 0;
 }
@@ -106,7 +105,7 @@
   width: min(620px, 100%);
   margin: 18px auto 0;
   color: rgba(255, 248, 237, 0.9);
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-sans);
   font-size: clamp(1rem, 2.1vw, 1.32rem);
   line-height: 1.7;
 }
@@ -116,14 +115,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 0 34px;
+  min-height: 56px;
+  padding: 0 40px;
   border: 1px solid rgba(118, 75, 28, 0.22);
   border-radius: 999px;
   color: #6a421f;
   background: linear-gradient(180deg, #ffe1a1 0%, #d89c45 100%);
-  box-shadow: 0 12px 28px rgba(58, 32, 12, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.68);
-  font-size: 0.82rem;
+  box-shadow: 0 16px 36px rgba(58, 32, 12, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.68);
+  font-size: 0.92rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-decoration: none;
@@ -132,12 +131,11 @@
 }
 
 .home-hero__link {
-  margin-top: 30px;
+  margin-top: 110px;
 }
 
 .home-hero__link:hover,
-.home-testimonial a:hover,
-.home-retreat-card:hover {
+.home-testimonial a:hover {
   transform: translateY(-3px);
 }
 
@@ -187,7 +185,7 @@
   width: min(860px, 100%);
   margin: 22px auto 0;
   color: #765f52;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-sans);
   font-size: clamp(1rem, 1.8vw, 1.18rem);
   line-height: 1.9;
 }
@@ -223,102 +221,60 @@
 .home-amenity span {
   max-width: 150px;
   color: #765b49;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.25;
 }
 
-.home-retreats {
-  padding: clamp(46px, 7vw, 74px) max(24px, calc((100vw - 1100px) / 2)) clamp(64px, 8vw, 92px);
-  text-align: center;
-  background:
-    linear-gradient(180deg, rgba(251, 244, 236, 0.92), rgba(249, 239, 228, 0.94)),
-    repeating-linear-gradient(45deg, rgba(180, 125, 57, 0.08) 0 1px, transparent 1px 18px);
-}
-
-.home-divider {
-  margin-bottom: 24px;
-}
-
-.home-retreat-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 34px;
-}
-
-.home-retreat-card {
-  position: relative;
-  min-height: 420px;
+.home-photo-collage {
   overflow: hidden;
-  border-radius: 8px;
-  color: #fff8ed;
-  box-shadow: 0 24px 54px rgba(80, 50, 28, 0.2);
-  text-decoration: none;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  padding: 0;
+  background: #fbf4ec;
 }
 
-.home-retreat-card:hover {
-  box-shadow: 0 30px 64px rgba(80, 50, 28, 0.28);
+.home-photo-collage__track {
+  display: flex;
+  width: max-content;
+  animation: home-collage-slide 36s linear infinite;
 }
 
-.home-retreat-card img {
+.home-photo-collage:hover .home-photo-collage__track {
+  animation-play-state: paused;
+}
+
+.home-photo-collage__item {
+  flex: 0 0 clamp(260px, 28vw, 520px);
+  height: clamp(300px, 38vw, 520px);
+  margin: 0;
+  overflow: hidden;
+}
+
+.home-photo-collage__item:nth-child(5n + 2),
+.home-photo-collage__item:nth-child(5n + 4) {
+  flex-basis: clamp(340px, 36vw, 660px);
+}
+
+.home-photo-collage__item img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.04);
 }
 
-.home-retreat-card::after {
-  position: absolute;
-  inset: 0;
-  content: '';
-  background:
-    linear-gradient(180deg, rgba(30, 20, 15, 0.02) 20%, rgba(30, 20, 15, 0.82) 100%),
-    linear-gradient(90deg, rgba(177, 113, 47, 0.2), rgba(11, 32, 75, 0.18));
-}
+@keyframes home-collage-slide {
+  from {
+    transform: translateX(0);
+  }
 
-.home-retreat-card__content {
-  position: absolute;
-  right: 18px;
-  bottom: 20px;
-  left: 18px;
-  z-index: 1;
-  display: grid;
-  justify-items: center;
-  gap: 10px;
-}
-
-.home-retreat-card strong {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.55rem, 2.6vw, 2.1rem);
-  font-weight: 500;
-  line-height: 1.18;
-}
-
-.home-retreat-card small {
-  color: #f5c876;
-  font-size: 0.96rem;
-}
-
-.home-retreat-card em {
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-  padding: 0 26px;
-  border-radius: 999px;
-  color: #72461f;
-  background: linear-gradient(180deg, #ffe2a2, #d69a43);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  font-size: 0.82rem;
-  font-style: normal;
-  font-weight: 800;
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .home-testimonial {
-  width: min(860px, calc(100% - 32px));
-  margin: 0 auto clamp(72px, 9vw, 112px);
-  padding: clamp(38px, 6vw, 64px);
+  width: min(760px, calc(100% - 32px));
+  margin: clamp(28px, 5vw, 64px) auto clamp(36px, 6vw, 72px);
+  padding: clamp(18px, 4vw, 36px);
   text-align: center;
   background: #fff9f0;
   border: 1px solid rgba(184, 128, 60, 0.18);
@@ -326,11 +282,16 @@
 }
 
 .home-testimonial blockquote {
-  margin: 22px auto 0;
+  margin: 16px auto 0;
   color: #705a4f;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.08rem, 2vw, 1.42rem);
-  line-height: 1.8;
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.6vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.home-testimonial h2 {
+  margin-bottom: 8px;
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
 }
 
 .home-testimonial a {
@@ -338,8 +299,7 @@
 }
 
 @media (max-width: 900px) {
-  .home-amenities,
-  .home-retreat-grid {
+  .home-amenities {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -354,7 +314,7 @@
 
 @media (max-width: 620px) {
   .home-hero {
-    min-height: 680px;
+    min-height: 600px;
   }
 
   .home-brand-mark {
@@ -366,8 +326,14 @@
     padding-bottom: 116px;
   }
 
-  .home-amenities,
-  .home-retreat-grid {
+  .home-hero__link {
+    margin-top: 40px;
+    min-height: 48px;
+    padding: 0 28px;
+    font-size: 0.9rem;
+  }
+
+  .home-amenities {
     grid-template-columns: 1fr;
   }
 
@@ -379,10 +345,6 @@
 
   .home-amenity:last-child {
     border-bottom: 0;
-  }
-
-  .home-retreat-card {
-    min-height: 360px;
   }
 
   .home-testimonial {

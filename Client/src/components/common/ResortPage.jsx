@@ -9,6 +9,7 @@ export default function ResortPage({
   ctaLabel = 'Plan Your Stay',
   ctaTo = '/contact',
   features = [],
+  amenities = [],
   noteTitle,
   note,
 }) {
@@ -32,6 +33,21 @@ export default function ResortPage({
         <h2>{noteTitle}</h2>
         <p>{note}</p>
       </section>
+
+      {amenities.length > 0 ? (
+        <section className="resort-page__amenities" aria-label={`${title} amenities`}>
+          {amenities.map((item) => {
+            const Icon = item.icon
+
+            return (
+              <div className="resort-page__amenity" key={item.label}>
+                <Icon aria-hidden="true" />
+                <span>{item.label}</span>
+              </div>
+            )
+          })}
+        </section>
+      ) : null}
 
       {features.length > 0 ? (
         <section className="resort-page__features" aria-label={`${title} highlights`}>

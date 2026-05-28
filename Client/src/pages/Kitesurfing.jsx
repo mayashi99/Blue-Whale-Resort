@@ -1,3 +1,4 @@
+import { FaRegCompass, FaUmbrellaBeach, FaWater, FaWind } from 'react-icons/fa6'
 import ResortPage from '../components/common/ResortPage.jsx'
 
 export default function Kitesurfing() {
@@ -9,6 +10,24 @@ export default function Kitesurfing() {
       ctaLabel="Book a Session"
       noteTitle="Wind, Water, and Easy Resort Days"
       note="Step from a calm resort morning into Kalpitiya's open lagoon conditions, then return for poolside rest, fresh meals, and sunset evenings."
+      amenities={[
+        {
+          label: 'Kite Surfing Lessons',
+          icon: FaWind,
+        },
+        {
+          label: 'Lagoon Practice Area',
+          icon: FaWater,
+        },
+        {
+          label: 'Beach Launch Support',
+          icon: FaUmbrellaBeach,
+        },
+        {
+          label: 'Adventure Guidance',
+          icon: FaRegCompass,
+        },
+      ]}
       features={[
         {
           eyebrow: 'Lessons',
