@@ -106,9 +106,11 @@ export default function Home() {
         <div className="home-amenities" aria-label="Resort amenities">
           {amenities.map((item) => {
             const Icon = item.icon
+            
 
             return (
-              <div className="home-amenity" key={item.label}>
+              
+              <div className="home-amenity" key={item.label} >
                 <Icon aria-hidden="true" />
                 <span>{item.label}</span>
               </div>

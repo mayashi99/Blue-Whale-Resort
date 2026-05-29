@@ -1,62 +1,214 @@
-import { Link } from 'react-router-dom'
-import '../../styles/footer.css'
-
-const footerLinks = [
-  { label: 'Rooms', to: '/rooms' },
-  { label: 'Packages', to: '/packages' },
-  { label: 'Kitesurfing', to: '/kitesurfing' },
-  { label: 'Dining', to: '/dining' },
-  { label: 'Gallery', to: '/gallery' },
-  { label: 'Contact', to: '/contact' },
-]
+import { Link } from "react-router-dom";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+} from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="site-footer__decor" aria-hidden>
-        <svg className="site-footer__wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M0,0 C300,120 900,0 1200,100 L1200,120 L0,120 Z" fill="rgba(6,10,15,0.16)" />
-          <path d="M0,20 C300,120 900,20 1200,80 L1200,120 L0,120 Z" fill="rgba(6,10,15,0.08)" />
-        </svg>
-      </div>
-      <div className="site-footer__inner">
-        <div className="site-footer__brand">
-          <span>BW</span>
+    <footer className="bg-gradient-to-b from-[#4A3A32] to-[#2B221D] text-[#F5EFE6]">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.4fr] gap-8">
+          {/* Brand */}
           <div>
-            <strong>Blue Whale Resort</strong>
-            <p>Kalpitiya coastal hideaway for rooms, dining, and lagoon adventure.</p>
+            <h2 className="text-3xl font-bold mb-4">Blue Whale Resort</h2>
+
+            <div className="w-16 h-1 bg-[#C89A53] mb-5 rounded-full"></div>
+
+            <p className="text-[#D9CFC3] leading-7">
+              Experience luxury, comfort, and unforgettable moments in the heart
+              of Kalpitiya. Discover elegant accommodations, fine dining, and
+              exciting lagoon adventures.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-xl font-semibold mb-5 text-white">
+              Quick Links
+            </h3>
+
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  to="/"
+                  className="text-[#D9CFC3] hover:text-[#C89A53] transition"
+                >
+                  Home
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/rooms"
+                  className="text-[#D9CFC3] hover:text-[#C89A53] transition"
+                >
+                  Rooms
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/packages"
+                  className="text-[#D9CFC3] hover:text-[#C89A53] transition"
+                >
+                  Packages
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/gallery"
+                  className="text-[#D9CFC3] hover:text-[#C89A53] transition"
+                >
+                  Gallery
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/about"
+                  className="text-[#D9CFC3] hover:text-[#C89A53] transition"
+                >
+                  About Us
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-[#D9CFC3] hover:text-[#C89A53] transition"
+                >
+                  Contact
+                </Link>
+              </li>
+              
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="text-xl font-semibold mb-5 text-white">
+              Our Services
+            </h3>
+
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  to="/kitesurfing"
+                  className="text-[#D9CFC3] hover:text-[#C89A53] transition"
+                >
+                  Kitesurfing
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/dining"
+                  className="text-[#D9CFC3] hover:text-[#C89A53] transition"
+                >
+                  Dining
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/packages"
+                  className="text-[#D9CFC3] hover:text-[#C89A53] transition"
+                >
+                  Holiday Packages
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/rooms"
+                  className="text-[#D9CFC3] hover:text-[#C89A53] transition"
+                >
+                  Luxury Rooms
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-xl font-semibold mb-5 text-white">
+              Contact Us
+            </h3>
+
+            <div className="space-y-4 text-[#D9CFC3]">
+              <div className="flex items-center gap-3">
+                <FaMapMarkerAlt className="text-[#C89A53]" />
+                <span>Kalpitiya, Sri Lanka</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <FaPhoneAlt className="text-[#C89A53]" />
+                <span>+94 77 123 4567</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <FaEnvelope className="text-[#C89A53]" />
+                <span>info@bluewhaleresort.com</span>
+              </div>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex gap-4 mt-8">
+              <a
+                href="#"
+                className="w-11 h-11 rounded-full border border-[#8D7668] flex items-center justify-center hover:border-[#C89A53] hover:text-[#C89A53] transition-all duration-300"
+              >
+                <FaFacebookF />
+              </a>
+
+              <a
+                href="#"
+                className="w-11 h-11 rounded-full border border-[#8D7668] flex items-center justify-center hover:border-[#C89A53] hover:text-[#C89A53] transition-all duration-300"
+              >
+                <FaInstagram />
+              </a>
+
+              <a
+                href="#"
+                className="w-11 h-11 rounded-full border border-[#8D7668] flex items-center justify-center hover:border-[#C89A53] hover:text-[#C89A53] transition-all duration-300"
+              >
+                <FaYoutube />
+              </a>
+            </div>
+          </div>
+          {/* Map (right side) */}
+          <div>
+            <h3 className="text-xl font-semibold mb-5 text-white">Find Us</h3>
+
+            <div className="overflow-hidden rounded-2xl border border-[#5C4A42] shadow-lg">
+              <iframe
+                title="Blue Whale Resort Location"
+                src="https://maps.google.com/maps?q=Blue%20Whale%20Resort%20Kalpitiya&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="220"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen
+              />
+            </div>
           </div>
         </div>
 
-        <nav className="site-footer__links" aria-label="Footer navigation">
-          {footerLinks.map((link) => (
-            <Link key={link.to} to={link.to}>
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Bottom */}
+        <div className="border-t border-[#5C4A42] mt-14 pt-6 flex flex-col md:flex-row justify-between items-center text-[#C8BDB0] text-sm">
+          <p>© 2026 Blue Whale Resort. All Rights Reserved.</p>
 
-        <div className="site-footer__contact">
-          <p>Kalpitiya, Sri Lanka</p>
-          <Link to="/contact">Plan Your Stay</Link>
-        </div>
-      </div>
-
-      <div className="site-footer__bottom">
-        <p>© 2026 Blue Whale Resort. All rights reserved.</p>
-        <p>Resort & Holidays</p>
-        <div className="site-footer__social" aria-label="Social links">
-          <a href="#" aria-label="Instagram" title="Instagram" className="social-link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
-          </a>
-          <a href="#" aria-label="Facebook" title="Facebook" className="social-link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 8h2.5V4.5H15c-2.2 0-3.5 1.3-3.5 3.5V11H9v3h2.5v7h3v-7H17l.5-3h-2.5V8z" fill="currentColor"/></svg>
-          </a>
-          <a href="#" aria-label="Twitter" title="Twitter" className="social-link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 7.5c-.6.3-1.2.5-1.9.6.7-.4 1.2-1 1.4-1.8-.7.4-1.5.7-2.3.9C16.6 6 15.6 5.5 14.5 5.5c-1.7 0-3 1.4-3 3 0 .2 0 .4.1.6C8.2 9 6 7.8 4.6 6.1c-.2.4-.3.9-.3 1.4 0 1.1.6 2.1 1.5 2.6-.5 0-1-.2-1.4-.4v.1c0 1.5 1.1 2.8 2.6 3.1-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.2 3 2.2-1.1.9-2.5 1.5-4 1.5H6c1.5.9 3.2 1.4 5 1.4 6 0 9.3-5 9.3-9.3v-.4c.6-.4 1.1-1 1.5-1.7-.6.3-1.2.5-1.9.6z" fill="currentColor"/></svg>
-          </a>
+          <p className="mt-3 md:mt-0">
+            Designed for Luxury Coastal Experiences
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }
