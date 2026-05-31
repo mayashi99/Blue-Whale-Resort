@@ -5,6 +5,7 @@ import {
   FaArrowRight, FaStar, FaPlay, FaChevronLeft, FaChevronRight,
 } from 'react-icons/fa6'
 import resortHero from '../assets/images/resort-hero.png'
+import blueResort from '../assets/images/bluewhale resort.png'
 import heroImage   from '../assets/hero.png'
 import '../styles/home.css'
 
@@ -100,12 +101,12 @@ export default function Home() {
         {/* bg with Ken Burns */}
         <div
           className="hero-bg absolute inset-0"
-          style={{ backgroundImage: `url(${resortHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+          style={{ backgroundImage: `url(${blueResort})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
         />
 
         {/* teal-to-transparent gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0b3d3a]/85 via-[#0b3d3a]/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071e1c]/70 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0b3d3a]/35 via-[#0b3d3a]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071e1c]/10 via-transparent to-transparent" />
 
         {/* top teal bar */}
         <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#2a9d8f] via-[#52b5a8] to-[#2a9d8f]" />
