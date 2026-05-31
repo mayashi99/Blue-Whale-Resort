@@ -366,7 +366,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           7. TESTIMONIALS
       ══════════════════════════════════════════ */}
-      <section className="bg-[#0b3d3a] py-24 px-6">
+      <section className="bg-white py-24 px-6">
         <div className="mx-auto max-w-4xl text-center">
 
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -376,28 +376,28 @@ export default function Home() {
           </div>
 
           <h2
-            className="text-4xl sm:text-5xl text-white mb-14"
+            className="text-4xl sm:text-5xl text-[#071e1c] mb-14"
             style={{ fontFamily: 'var(--font-display)', fontWeight: 300 }}
           >
             What our guests say
           </h2>
 
           {/* testimonial card */}
-          <div className="relative bg-white/5 border border-white/10 rounded-2xl px-8 sm:px-14 py-12">
+          <div className="relative bg-white border border-gray-200 rounded-2xl px-8 sm:px-14 py-12 shadow-sm">
             <div className="flex justify-center gap-1 mb-6">
               {[...Array(testimonials[activeTestimonial].stars)].map((_, i) => (
                 <FaStar key={i} className="text-[#e76f51] text-sm" />
               ))}
             </div>
             <p
-              className="text-xl sm:text-2xl text-white/85 leading-relaxed italic"
+              className="text-xl sm:text-2xl text-[#071e1c] leading-relaxed italic"
               style={{ fontFamily: 'var(--font-display)', fontWeight: 300 }}
             >
               {testimonials[activeTestimonial].text}
             </p>
             <div className="mt-8 flex flex-col items-center gap-1">
-              <p className="text-sm font-semibold text-[#7dd8cc]">{testimonials[activeTestimonial].name}</p>
-              <p className="text-xs text-white/35 tracking-wide">{testimonials[activeTestimonial].origin}</p>
+              <p className="text-sm font-semibold text-[#0b3d3a]">{testimonials[activeTestimonial].name}</p>
+              <p className="text-xs text-gray-500 tracking-wide">{testimonials[activeTestimonial].origin}</p>
             </div>
           </div>
 
@@ -405,7 +405,7 @@ export default function Home() {
           <div className="mt-8 flex items-center justify-center gap-4">
             <button
               onClick={prev}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/50 transition hover:border-[#7dd8cc]/50 hover:text-[#7dd8cc]"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition hover:border-[#7dd8cc]/50 hover:text-[#7dd8cc]"
             >
               <FaChevronLeft className="text-xs" />
             </button>
@@ -420,7 +420,7 @@ export default function Home() {
             </div>
             <button
               onClick={next}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/50 transition hover:border-[#7dd8cc]/50 hover:text-[#7dd8cc]"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition hover:border-[#7dd8cc]/50 hover:text-[#7dd8cc]"
             >
               <FaChevronRight className="text-xs" />
             </button>
