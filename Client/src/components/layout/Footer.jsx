@@ -1,62 +1,174 @@
 import { Link } from 'react-router-dom'
-import '../../styles/footer.css'
+import { FaInstagram, FaFacebookF, FaXTwitter, FaYoutube } from 'react-icons/fa6'
+import { FaLocationDot, FaPhone, FaEnvelope, FaArrowRight } from 'react-icons/fa6'
 
-const footerLinks = [
-  { label: 'Rooms', to: '/rooms' },
-  { label: 'Packages', to: '/packages' },
-  { label: 'Kitesurfing', to: '/kitesurfing' },
-  { label: 'Dining', to: '/dining' },
-  { label: 'Gallery', to: '/gallery' },
-  { label: 'Contact', to: '/contact' },
+const explore = [
+  { label: 'Rooms & Suites', to: '/rooms' },
+  { label: 'Packages',       to: '/packages' },
+  { label: 'Kitesurfing',    to: '/kitesurfing' },
+  { label: 'Dining',         to: '/dining' },
+  { label: 'Gallery',        to: '/gallery' },
+  { label: 'About Us',       to: '/about-us' },
+]
+
+const support = [
+  { label: 'Contact Us',        to: '/contact' },
+  { label: 'Booking Policy',    to: '/contact' },
+  { label: 'Cancellation',      to: '/contact' },
+  { label: 'FAQ',               to: '/contact' },
+  { label: 'Privacy Policy',    to: '/contact' },
+]
+
+const socials = [
+  { icon: FaInstagram, href: '#', label: 'Instagram' },
+  { icon: FaFacebookF, href: '#', label: 'Facebook'  },
+  { icon: FaXTwitter,  href: '#', label: 'X'         },
+  { icon: FaYoutube,   href: '#', label: 'YouTube'   },
 ]
 
 export default function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="site-footer__decor" aria-hidden>
-        <svg className="site-footer__wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M0,0 C300,120 900,0 1200,100 L1200,120 L0,120 Z" fill="rgba(6,10,15,0.16)" />
-          <path d="M0,20 C300,120 900,20 1200,80 L1200,120 L0,120 Z" fill="rgba(6,10,15,0.08)" />
-        </svg>
-      </div>
-      <div className="site-footer__inner">
-        <div className="site-footer__brand">
-          <span>BW</span>
-          <div>
-            <strong>Blue Whale Resort</strong>
-            <p>Kalpitiya coastal hideaway for rooms, dining, and lagoon adventure.</p>
+    <footer className="w-full bg-[#071e1c] text-white">
+
+      {/* ── gold top rule ── */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#2a9d8f]/60 to-transparent" />
+
+      {/* ── main grid ── */}
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 pt-20 pb-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.4fr] gap-12 lg:gap-8">
+
+        {/* col 1 — brand */}
+        <div>
+          {/* logo */}
+          <Link to="/" className="inline-flex items-center gap-3 mb-6 group">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#2a9d8f]/50 text-[#7dd8cc] text-xs font-bold tracking-widest transition group-hover:bg-[#2a9d8f] group-hover:text-white">
+              BW
+            </div>
+            <div className="flex flex-col leading-tight">
+              <span className="text-sm font-bold tracking-[0.1em] uppercase text-white">Blue Whale</span>
+              <span className="text-[10px] tracking-[0.22em] text-[#7dd8cc]/70 uppercase">Resort & Holidays</span>
+            </div>
+          </Link>
+
+          <p className="text-sm text-white/45 leading-relaxed max-w-xs font-light">
+            A boutique beachfront sanctuary in Kalpitiya, Sri Lanka — where
+            pristine lagoons, world-class kitesurfing, and refined hospitality
+            converge into an unforgettable escape.
+          </p>
+
+          {/* contact details */}
+          <ul className="mt-8 space-y-3">
+            {[
+                { icon: FaLocationDot, text: 'Kalpitiya, North Western Province, Sri Lanka' },
+              { icon: FaPhone,       text: '+94 77 000 0000' },
+              { icon: FaEnvelope,    text: 'hello@bluewhaleresort.lk' },
+            ].map(({ icon: Icon, text }) => (
+              <li key={text} className="flex items-start gap-3 text-xs text-white/45 font-light">
+                <Icon className="text-[#2a9d8f] mt-0.5 flex-shrink-0 text-[11px]" />
+                {text}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* col 2 — explore */}
+        <div>
+          <h4 className="text-[10px] font-bold tracking-[0.28em] uppercase text-[#7dd8cc] mb-6">
+            Explore
+          </h4>
+          <ul className="space-y-3">
+            {explore.map((l) => (
+              <li key={l.to}>
+                <Link
+                  to={l.to}
+                  className="text-sm text-white/50 font-light transition-all duration-200 hover:text-white hover:pl-1 inline-block"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* col 3 — support */}
+        <div>
+          <h4 className="text-[10px] font-bold tracking-[0.28em] uppercase text-[#7dd8cc] mb-6">
+            Support
+          </h4>
+          <ul className="space-y-3">
+            {support.map((l) => (
+              <li key={l.label}>
+                <Link
+                  to={l.to}
+                  className="text-sm text-white/50 font-light transition-all duration-200 hover:text-white hover:pl-1 inline-block"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* col 4 — newsletter + socials */}
+        <div>
+          <h4 className="text-[10px] font-bold tracking-[0.28em] uppercase text-[#7dd8cc] mb-6">
+            Stay in Touch
+          </h4>
+          <p className="text-sm text-white/45 font-light leading-relaxed mb-5">
+            Get exclusive offers and resort updates delivered to your inbox.
+          </p>
+
+          {/* email input */}
+          <div className="flex border border-white/10 focus-within:border-[#2a9d8f]/60 transition-colors">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="flex-1 min-w-0 bg-transparent px-4 py-3 text-xs text-white placeholder-white/25 outline-none"
+            />
+            <button
+              type="button"
+              aria-label="Subscribe"
+              className="flex items-center justify-center px-4 bg-[#2a9d8f] text-white transition hover:bg-[#52b5a8]"
+            >
+              <FaArrowRight className="text-xs" />
+            </button>
+          </div>
+
+          {/* socials */}
+          <div className="mt-8">
+            <p className="text-[10px] tracking-[0.22em] uppercase text-white/25 mb-4">Follow Us</p>
+            <div className="flex items-center gap-3">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/40 transition hover:border-[#2a9d8f]/60 hover:text-[#7dd8cc]"
+                >
+                  <Icon className="text-xs" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
+      </div>
 
-        <nav className="site-footer__links" aria-label="Footer navigation">
-          {footerLinks.map((link) => (
-            <Link key={link.to} to={link.to}>
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+      {/* ── divider ── */}
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+        <div className="h-px bg-white/6" />
+      </div>
 
-        <div className="site-footer__contact">
-          <p>Kalpitiya, Sri Lanka</p>
-          <Link to="/contact">Plan Your Stay</Link>
+      {/* ── bottom bar ── */}
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="text-[11px] text-white/25 tracking-wide">
+          © {new Date().getFullYear()} Blue Whale Resort & Holidays. All rights reserved.
+        </p>
+        <div className="flex items-center gap-1 text-[11px] text-white/20">
+          <span>Crafted with care in</span>
+          <span className="text-[#7dd8cc]/60 mx-1">Sri Lanka</span>
+          <span>🇱🇰</span>
         </div>
       </div>
 
-      <div className="site-footer__bottom">
-        <p>© 2026 Blue Whale Resort. All rights reserved.</p>
-        <p>Resort & Holidays</p>
-        <div className="site-footer__social" aria-label="Social links">
-          <a href="#" aria-label="Instagram" title="Instagram" className="social-link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
-          </a>
-          <a href="#" aria-label="Facebook" title="Facebook" className="social-link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 8h2.5V4.5H15c-2.2 0-3.5 1.3-3.5 3.5V11H9v3h2.5v7h3v-7H17l.5-3h-2.5V8z" fill="currentColor"/></svg>
-          </a>
-          <a href="#" aria-label="Twitter" title="Twitter" className="social-link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 7.5c-.6.3-1.2.5-1.9.6.7-.4 1.2-1 1.4-1.8-.7.4-1.5.7-2.3.9C16.6 6 15.6 5.5 14.5 5.5c-1.7 0-3 1.4-3 3 0 .2 0 .4.1.6C8.2 9 6 7.8 4.6 6.1c-.2.4-.3.9-.3 1.4 0 1.1.6 2.1 1.5 2.6-.5 0-1-.2-1.4-.4v.1c0 1.5 1.1 2.8 2.6 3.1-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.2 3 2.2-1.1.9-2.5 1.5-4 1.5H6c1.5.9 3.2 1.4 5 1.4 6 0 9.3-5 9.3-9.3v-.4c.6-.4 1.1-1 1.5-1.7-.6.3-1.2.5-1.9.6z" fill="currentColor"/></svg>
-          </a>
-        </div>
-      </div>
     </footer>
   )
 }
