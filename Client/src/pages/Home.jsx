@@ -157,8 +157,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-          ><br /> <br /> <br /> <br /> <br /> 
-           A beachfront escape in Kalpitiya with tropical stays, kitesurfing adventures, lagoon experiences and unforgettable sunsets.
+          ><br /> <br /> <br /> <br /> <br />  <br /> <br />  <br /> <br /> 
+           
 
 
           </motion.p>
