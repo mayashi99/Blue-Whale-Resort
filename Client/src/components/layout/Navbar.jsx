@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import '../../styles/navbar.css'
+import siteLogo from '../../assets/images/Blue Simple Ocean Guardian whale Logo.png'
 
 const navItems = [
   { label: 'Home', path: '/' },
@@ -47,13 +48,7 @@ export default function Navbar() {
         </nav>
 
         <NavLink className="site-navbar__brand" to="/" aria-label="Blue Whale Resort home">
-          <svg className="site-navbar__whale" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-            <ellipse cx="20" cy="22" rx="14" ry="10" fill="currentColor" opacity=".18"/>
-            <path d="M6 22c0-7.732 6.268-14 14-14s14 6.268 14 14c0 4-1.8 7.6-4.6 10H10.6C7.8 29.6 6 26 6 22Z" fill="currentColor"/>
-            <path d="M34 16c2-1 5-1 6 2-2 0-4 1-6 3v-5Z" fill="currentColor"/>
-            <circle cx="27" cy="19" r="1.5" fill="#fff"/>
-            <path d="M10 32c1 3 3 5 6 6M20 32c0 3 1 5 3 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
+          <img src={siteLogo} alt="Blue Whale Resort logo" className="site-navbar__logo" />
           <span className="site-navbar__brand-text">
             <strong>Blue Whale</strong>
             <small>Resort & Holidays</small>

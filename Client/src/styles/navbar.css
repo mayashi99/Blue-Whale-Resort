@@ -127,6 +127,21 @@
 .site-navbar--scrolled .site-navbar__link--active { color: var(--color-primary); }
 .site-navbar--scrolled .site-navbar__link::after { background: var(--color-primary); }
 
+/* Logo image sizing */
+.site-navbar__logo {
+  height: 64px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  transition: height 220ms ease, transform 220ms ease;
+}
+.site-navbar--scrolled .site-navbar__logo {
+  height: 56px;
+}
+@media (max-width: 600px) {
+  .site-navbar__logo { height: 52px; }
+}
+
 /* ── Actions ── */
 .site-navbar__actions {
   display: flex;
