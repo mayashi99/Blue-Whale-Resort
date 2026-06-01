@@ -1,0 +1,10 @@
+{
+  "name": "blue-whale-resort",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "npm --prefix Client run dev",
+    "client:dev": "npm --prefix Client run dev",
+    "server:dev": "npm --prefix Server run server || npm --prefix Server run start"
+  }
+}

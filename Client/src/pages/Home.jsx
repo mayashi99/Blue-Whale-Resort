@@ -91,7 +91,7 @@ export default function Home() {
   const next = () => setActiveTestimonial((i) => (i + 1) % testimonials.length)
 
   return (
-    <div className="w-full overflow-x-hidden" style={{ fontFamily: 'var(--font-sans)' }}>
+    <div className="w-full overflow-x-hidden" style={{ fontFamily: "Proxima Nova, var(--font-sans)" }}>
 
       {/* ══════════════════════════════════════════
           1. HERO
@@ -431,55 +431,9 @@ export default function Home() {
           8. CTA BANNER
       ══════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-[#f7fffe] py-28 px-6">
-        {/* decorative teal circle */}
-        <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-[#2a9d8f]/8 pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#2a9d8f]/6 pointer-events-none" />
+        {/* decorative teal circles removed */}
 
-        <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <div className="flex items-center justify-center gap-3 mb-5">
-            <div className="h-px w-8 bg-[#2a9d8f]" />
-            <span className="text-[10px] font-semibold tracking-[0.28em] text-[#2a9d8f] uppercase">Limited Availability</span>
-            <div className="h-px w-8 bg-[#2a9d8f]" />
-          </div>
-
-          <h2
-            className="text-4xl sm:text-5xl lg:text-6xl text-[#0b3d3a] leading-tight"
-            style={{ fontFamily: 'var(--font-display)', fontWeight: 300 }}
-          >
-            Your perfect<br />
-            <em className="text-[#2a9d8f]">island escape</em> awaits
-          </h2>
-
-          <p className="mt-6 text-[#0b3d3a]/55 leading-relaxed max-w-lg mx-auto text-sm">
-            Reserve your stay at Blue Whale Resort and experience the finest
-            beachfront hospitality Sri Lanka has to offer.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-3 rounded-full bg-[#0b3d3a] px-10 py-4 text-xs font-semibold tracking-[0.16em] uppercase text-white shadow-lg shadow-[#0b3d3a]/20 transition hover:bg-[#2a9d8f] hover:shadow-[#2a9d8f]/30"
-            >
-              Book Your Stay <FaArrowRight className="text-[10px] transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              to="/packages"
-              className="inline-flex items-center gap-3 rounded-full border border-[#2a9d8f]/40 px-10 py-4 text-xs font-semibold tracking-[0.16em] uppercase text-[#2a9d8f] transition hover:bg-[#f0faf8]"
-            >
-              View Packages
-            </Link>
-          </div>
-
-          {/* trust row */}
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-[11px] text-[#0b3d3a]/35 tracking-wide">
-            {['Free Cancellation', 'Best Rate Guarantee', 'Instant Confirmation'].map((t) => (
-              <span key={t} className="flex items-center gap-2">
-                <span className="h-1 w-1 rounded-full bg-[#2a9d8f]" />
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
+     
       </section>
 
     </div>
