@@ -23,9 +23,29 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // split nav items for left / right around the brand
+  const mid = Math.ceil(navItems.length / 2)
+  const leftItems = navItems.slice(0, mid)
+  const rightItems = navItems.slice(mid)
+
   return (
     <header className={`site-navbar${scrolled ? ' site-navbar--scrolled' : ''}`}>
       <div className="site-navbar__inner">
+        <nav className="site-navbar__links site-navbar__links--left" aria-label="Primary navigation">
+          {leftItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              end={item.path === '/'}
+              className={({ isActive }) =>
+                ['site-navbar__link', isActive ? 'site-navbar__link--active' : ''].join(' ')
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+
         <NavLink className="site-navbar__brand" to="/" aria-label="Blue Whale Resort home">
           <svg className="site-navbar__whale" viewBox="0 0 40 40" fill="none" aria-hidden="true">
             <ellipse cx="20" cy="22" rx="14" ry="10" fill="currentColor" opacity=".18"/>
@@ -40,8 +60,8 @@ export default function Navbar() {
           </span>
         </NavLink>
 
-        <nav className="site-navbar__links" aria-label="Primary navigation">
-          {navItems.map((item) => (
+        <nav className="site-navbar__links site-navbar__links--right" aria-label="Primary navigation">
+          {rightItems.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
@@ -53,21 +73,21 @@ export default function Navbar() {
               {item.label}
             </NavLink>
           ))}
-        </nav>
 
-        <div className="site-navbar__actions">
-          <NavLink className="site-navbar__book" to="/contact">
-            Book Now
-          </NavLink>
-          <button
-            className="site-navbar__burger"
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span /><span /><span />
-          </button>
-        </div>
+          <div className="site-navbar__actions">
+            <NavLink className="site-navbar__book" to="/contact">
+              Reserve
+            </NavLink>
+            <button
+              className="site-navbar__burger"
+              aria-label="Toggle menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span /><span /><span />
+            </button>
+          </div>
+        </nav>
       </div>
 
       {open && (
