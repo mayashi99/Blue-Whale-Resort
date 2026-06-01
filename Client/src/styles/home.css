@@ -28,3 +28,23 @@
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+/* Theme utilities using CSS variables */
+.bg-primary { background-color: var(--color-primary) !important; }
+.bg-primary-50 { background-color: rgba(var(--color-primary-rgb), 0.5) !important; }
+.bg-primary-60 { background-color: rgba(var(--color-primary-rgb), 0.6) !important; }
+.bg-primary-90 { background-color: rgba(var(--color-primary-rgb), 0.9) !important; }
+.bg-primary-dark { background-color: rgba(var(--color-primary-rgb), 0.85) !important; }
+.text-primary { color: var(--color-primary) !important; }
+.shadow-primary { box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.12) !important; }
+.border-primary { border-color: var(--color-primary) !important; }
+.btn-primary { background-color: var(--color-primary); color: white; }
+.btn-primary:hover { opacity: 0.92; }
+/* Additional alpha helpers */
+.bg-primary-10 { background-color: rgba(var(--color-primary-rgb), 0.1) !important; }
+.bg-primary-20 { background-color: rgba(var(--color-primary-rgb), 0.2) !important; }
+.bg-primary-30 { background-color: rgba(var(--color-primary-rgb), 0.3) !important; }
+.border-primary-30 { border-color: rgba(var(--color-primary-rgb), 0.3) !important; }
+.border-primary-40 { border-color: rgba(var(--color-primary-rgb), 0.4) !important; }
+.text-primary-70 { color: rgba(var(--color-primary-rgb), 0.7) !important; }
+.text-primary-50 { color: rgba(var(--color-primary-rgb), 0.5) !important; }

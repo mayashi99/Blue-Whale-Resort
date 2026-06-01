@@ -4,8 +4,10 @@ import {
   FaUmbrellaBeach, FaUtensils, FaWind, FaPeopleRoof,
   FaArrowRight, FaStar, FaPlay, FaChevronLeft, FaChevronRight,
 } from 'react-icons/fa6'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import resortHero from '../assets/images/resort-hero.png'
 import blueResort from '../assets/images/bluewhale resort.png'
+import heroVideo from '../assets/videos/web.mp4'
 import heroImage   from '../assets/hero.png'
 import '../styles/home.css'
 
@@ -86,9 +88,25 @@ const galleryStrip = [
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0)
   const loopStrip = [...galleryStrip, ...galleryStrip]
+  const { scrollY } = useScroll()
+  const heroY = useTransform(scrollY, [0, 500], [0, 200])
 
   const prev = () => setActiveTestimonial((i) => (i - 1 + testimonials.length) % testimonials.length)
   const next = () => setActiveTestimonial((i) => (i + 1) % testimonials.length)
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-50px" },
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+
+  const staggerContainer = {
+    initial: { opacity: 0 },
+    whileInView: { opacity: 1 },
+    viewport: { once: true, margin: "-50px" },
+    transition: { staggerChildren: 0.15 }
+  }
 
   return (
     <div className="w-full overflow-x-hidden" style={{ fontFamily: "Proxima Nova, var(--font-sans)" }}>
@@ -96,80 +114,118 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════ */}
-      <section className="relative h-[75vh] min-h-[520px] overflow-hidden">
+      <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
 
-        {/* bg with Ken Burns */}
-        <div
-          className="hero-bg absolute inset-0"
-          style={{ backgroundImage: `url(${blueResort})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+        {/* bg with Ken Burns - video fallback to image poster */}
+        <motion.video
+          className="hero-bg absolute inset-0 object-cover w-full h-full"
+          src={heroVideo}
+          poster={blueResort}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ y: heroY, objectFit: 'cover' }}
         />
 
-        {/* teal-to-transparent gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0b3d3a]/25 via-[#0b3d3a]/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071e1c]/40 via-transparent to-transparent" />
-
-        {/* top teal bar removed as requested */}
+        {/* refined gradient overlay */}
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.38), rgba(var(--color-primary-rgb), 0.26), transparent)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071e1c]/60 via-transparent to-transparent" />
 
         {/* content — left aligned */}
         <div className="relative z-10 flex h-full flex-col justify-center px-8 sm:px-16 lg:px-24 max-w-[1400px] mx-auto">
 
-          {/* hero badge removed */}
-
           {/* headline — serif display font */}
-          <h1
-            className="max-w-2xl text-[3.2rem] sm:text-[4.5rem] lg:text-[6rem] leading-[1.0] text-white"
+          <motion.h1
+            className="max-w-3xl text-[3.5rem] sm:text-[5rem] lg:text-[6.5rem] leading-[1.05] text-white tracking-tight"
             style={{ fontFamily: 'var(--font-display)', fontWeight: 300 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             Escape to the<br />
-            <span className="italic text-[#7dd8cc]">Edge of the</span><br />
+            <span className="italic text-primary">Edge of the</span><br />
             Ocean
-          </h1>
+          </motion.h1>
 
-          <p className="mt-6 max-w-sm text-sm text-white/65 leading-relaxed">
+          <motion.p 
+            className="mt-8 max-w-md text-base text-white/80 leading-relaxed font-light"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             A boutique beachfront sanctuary in Kalpitiya — where pristine
             lagoons, trade winds, and tropical warmth create the perfect escape.
-          </p>
+          </motion.p>
 
           {/* CTAs */}
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <motion.div 
+            className="mt-12 flex flex-wrap items-center gap-5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
             <Link
               to="/rooms"
-              className="group inline-flex items-center gap-3 rounded-full bg-[#2a9d8f] px-8 py-4 text-xs font-semibold tracking-[0.14em] uppercase text-white shadow-lg shadow-[#2a9d8f]/40 transition-all duration-300 hover:bg-[#52b5a8] hover:shadow-[#52b5a8]/40 hover:gap-4"
+              className="group inline-flex items-center gap-3 rounded-full bg-primary px-10 py-4 text-sm font-semibold tracking-[0.12em] uppercase text-white shadow-lg shadow-primary transition-all duration-300 hover:opacity-90"
             >
               Reserve a Room
-              <FaArrowRight className="text-[10px] transition-transform group-hover:translate-x-1" />
+              <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
             </Link>
-            <button className="inline-flex items-center gap-3 text-xs font-medium tracking-[0.14em] uppercase text-white/70 transition hover:text-white">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 transition hover:border-white/70">
-                <FaPlay className="text-[9px] ml-0.5" />
+            <button className="inline-flex items-center gap-3 text-sm font-medium tracking-[0.12em] uppercase text-white/80 transition hover:text-white">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/40 transition hover:border-white/70 hover:bg-white/10">
+                <FaPlay className="text-xs ml-0.5" />
               </span>
               Watch Film
             </button>
-          </div>
+          </motion.div>
         </div>
 
         {/* scroll cue */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
-          <div className="scroll-dot h-8 w-px bg-white/40" />
-          <span className="text-[9px] tracking-[0.3em] text-white/40 uppercase">Scroll</span>
-        </div>
+        <motion.div 
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <motion.div 
+            className="scroll-dot h-10 w-px bg-white/50"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+          <span className="text-[10px] tracking-[0.25em] text-white/50 uppercase font-medium">Scroll</span>
+        </motion.div>
 
         {/* floating stats card */}
-        <div className="absolute bottom-10 right-8 sm:right-16 z-10 hidden sm:grid grid-cols-2 gap-px bg-white/10 backdrop-blur-md border border-white/15 overflow-hidden">
-          {stats.map((s) => (
-            <div key={s.label} className="flex flex-col items-center justify-center gap-0.5 px-6 py-4 bg-[#0b3d3a]/60">
-              <span className="text-xl font-semibold text-[#7dd8cc]">{s.value}</span>
-              <span className="text-[9px] tracking-[0.18em] text-white/45 uppercase">{s.label}</span>
-            </div>
+            <motion.div 
+              className="absolute bottom-12 right-8 sm:right-16 z-10 hidden sm:grid grid-cols-2 gap-px bg-white/5 backdrop-blur-lg border border-white/10 overflow-hidden rounded-lg"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          {stats.map((s, i) => (
+            <motion.div 
+                  key={s.label} 
+                  className="flex flex-col items-center justify-center gap-1 px-8 py-5 bg-primary-50 hover:bg-primary-60 transition-colors"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.7 + i * 0.08 }}
+            >
+              <span className="text-2xl font-semibold text-primary">{s.value}</span>
+              <span className="text-[10px] tracking-[0.2em] text-white/60 uppercase font-medium">{s.label}</span>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* ══════════════════════════════════════════
           2. INTRO STRIP
       ══════════════════════════════════════════ */}
-      <div className="bg-[#f0faf8] border-b border-[#2a9d8f]/15">
-        <div className="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div className="bg-white border-b border-gray-100">
+        <div className="mx-auto max-w-6xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* intro paragraph removed */}
           {/* ratings removed */}
         </div>
@@ -178,40 +234,56 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           3. ABOUT — split layout
       ══════════════════════════════════════════ */}
-      <section className="bg-white py-24 lg:py-32 px-6">
-        <div className="mx-auto max-w-6xl grid lg:grid-cols-2 gap-16 items-center">
+      <section className="bg-white py-28 lg:py-36 px-6">
+        <div className="mx-auto max-w-6xl grid lg:grid-cols-2 gap-20 items-center">
 
           {/* image side */}
-          <div className="relative">
-            <div className="relative overflow-hidden" style={{ height: '520px' }}>
-              <img src={resortHero} alt="Blue Whale Resort" className="h-full w-full object-cover" />
-              {/* teal corner frames */}
-              <div className="absolute top-4 left-4 w-14 h-14 border-t-2 border-l-2 border-[#2a9d8f]" />
-              <div className="absolute bottom-4 right-4 w-14 h-14 border-b-2 border-r-2 border-[#2a9d8f]" />
+            <motion.div 
+            className="relative"
+            {...fadeInUp}
+          >
+            <div className="relative overflow-hidden rounded-2xl" style={{ height: '560px' }}>
+              <motion.img 
+                src={resortHero} 
+                alt="Blue Whale Resort" 
+                className="h-full w-full object-cover"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.7 }}
+              />
             </div>
             {/* floating badge */}
-            <div className="absolute -bottom-6 -right-4 sm:-right-8 bg-[#0b3d3a] text-white px-6 py-5 shadow-xl">
-              <p className="text-3xl font-light text-[#7dd8cc]" style={{ fontFamily: 'var(--font-display)' }}>Since</p>
-              <p className="text-4xl font-semibold tracking-tight">2010</p>
-              <p className="text-[10px] tracking-[0.2em] text-white/50 uppercase mt-1">Est. Kalpitiya</p>
-            </div>
-          </div>
+            <motion.div 
+              className="absolute -bottom-8 -right-4 sm:-right-8 bg-primary text-white px-8 py-6 shadow-2xl rounded-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <p className="text-3xl font-light text-primary" style={{ fontFamily: 'var(--font-display)' }}>Since</p>
+              <p className="text-5xl font-semibold tracking-tight">2010</p>
+              <p className="text-[11px] tracking-[0.2em] text-white/50 uppercase mt-2 font-medium">Est. Kalpitiya</p>
+            </motion.div>
+          </motion.div>
 
           {/* text side */}
-          <div className="lg:pl-6">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="h-px w-8 bg-[#2a9d8f]" />
-              <span className="text-[10px] font-semibold tracking-[0.28em] text-[#2a9d8f] uppercase">About the Resort</span>
+          <motion.div 
+            className="lg:pl-8"
+            {...fadeInUp}
+            transition={{ delay: 0.15 }}
+          >
+              <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-12 bg-primary" />
+              <span className="text-[11px] font-semibold tracking-[0.25em] text-primary uppercase">About the Resort</span>
             </div>
 
             <h2
-              className="text-4xl sm:text-5xl text-[#0b3d3a] leading-[1.1]"
+              className="text-4xl sm:text-5xl lg:text-6xl text-primary leading-[1.1]"
               style={{ fontFamily: 'var(--font-display)', fontWeight: 300 }}
             >
               A <em>boutique sanctuary</em><br />by the Indian Ocean
             </h2>
 
-            <p className="mt-6 text-[#0b3d3a]/60 leading-relaxed text-sm">
+            <p className="mt-8 text-primary-70 leading-relaxed text-base font-light">
               Blue Whale Resort is a luxury beachfront escape dedicated to world-class
               hospitality. Located in Kalpitiya — Sri Lanka's kite surfing capital —
               we offer elegant beach-facing chalets, a renowned lagoon, fresh coastal
@@ -219,222 +291,291 @@ export default function Home() {
             </p>
 
             {/* mini stats row */}
-            <div className="mt-8 grid grid-cols-3 gap-4 border-t border-[#2a9d8f]/15 pt-8">
+            <div className="mt-10 grid grid-cols-3 gap-8 border-t border-gray-100 pt-10">
               {[
                 { n: '12+', l: 'Suites' },
                 { n: '4',   l: 'Dining Spots' },
                 { n: '10k+',l: 'Guests' },
-              ].map((s) => (
-                <div key={s.l}>
-                  <p className="text-2xl font-light text-[#2a9d8f]" style={{ fontFamily: 'var(--font-display)' }}>{s.n}</p>
-                  <p className="text-[11px] tracking-wide text-[#0b3d3a]/45 uppercase mt-0.5">{s.l}</p>
-                </div>
+              ].map((s, i) => (
+                <motion.div 
+                  key={s.l}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
+                >
+                  <p className="text-3xl font-light text-primary" style={{ fontFamily: 'var(--font-display)' }}>{s.n}</p>
+                  <p className="text-[12px] tracking-wide text-primary-50 uppercase mt-1 font-medium">{s.l}</p>
+                </motion.div>
               ))}
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 to="/about-us"
-                className="inline-flex items-center gap-2 rounded-full bg-[#0b3d3a] px-7 py-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-white transition hover:bg-[#2a9d8f]"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold tracking-[0.1em] uppercase text-white transition hover:opacity-90 hover:shadow-lg"
               >
-                Our Story <FaArrowRight className="text-[10px]" />
+                Our Story <FaArrowRight className="text-xs" />
               </Link>
               <Link
                 to="/gallery"
-                className="inline-flex items-center gap-2 rounded-full border border-[#2a9d8f]/40 px-7 py-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-[#2a9d8f] transition hover:bg-[#f0faf8]"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-primary-30 px-8 py-4 text-sm font-semibold tracking-[0.1em] uppercase text-primary transition hover:bg-[#f0faf8] hover:border-primary"
               >
                 View Gallery
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
           4. WHAT WE OFFER
       ══════════════════════════════════════════ */}
-      <section className="bg-[#f7fffe] py-24 px-6">
+      <section className="bg-gray-50 py-28 px-6">
         <div className="mx-auto max-w-6xl">
 
-          <div className="text-center mb-14">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="h-px w-8 bg-[#2a9d8f]" />
-              <span className="text-[10px] font-semibold tracking-[0.28em] text-[#2a9d8f] uppercase">Experiences</span>
-              <div className="h-px w-8 bg-[#2a9d8f]" />
+          <motion.div 
+            className="text-center mb-16"
+            {...fadeInUp}
+          >
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <div className="h-px w-12 bg-primary" />
+              <span className="text-[11px] font-semibold tracking-[0.25em] text-primary uppercase">Experiences</span>
+              <div className="h-px w-12 bg-primary" />
             </div>
             <h2
-              className="text-4xl sm:text-5xl text-[#0b3d3a]"
+              className="text-4xl sm:text-5xl text-primary"
               style={{ fontFamily: 'var(--font-display)', fontWeight: 300 }}
             >
               Crafted for every kind of traveller
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {offers.map((o) => {
+          <motion.div 
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {offers.map((o, i) => {
               const Icon = o.icon
               return (
-                <Link
+                <motion.div
                   key={o.tag}
-                  to={o.link}
-                  className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-500"
-                  style={{ aspectRatio: '3/4' }}
+                  variants={{
+                    initial: { opacity: 0, y: 30 },
+                    whileInView: { opacity: 1, y: 0 }
+                  }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <img
-                    src={o.img}
-                    alt={o.title}
-                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110"
-                  />
-                  {/* gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071e1c]/95 via-[#071e1c]/30 to-transparent" />
+                  <Link
+                    to={o.link}
+                    className="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-500 block"
+                    style={{ aspectRatio: '3/4' }}
+                  >
+                    <motion.img
+                      src={o.img}
+                      alt={o.title}
+                      className="absolute inset-0 h-full w-full object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    {/* gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#071e1c]/90 via-[#071e1c]/20 to-transparent" />
 
-                  {/* tag pill */}
-                  <div className="absolute top-4 left-4 rounded-full bg-[#2a9d8f]/80 backdrop-blur-sm px-3 py-1 text-[9px] font-semibold tracking-[0.18em] uppercase text-white">
-                    {o.tag}
-                  </div>
+                    {/* tag pill */}
+                    <div className="absolute top-4 left-4 rounded-full bg-primary-90 backdrop-blur-sm px-4 py-1.5 text-[10px] font-semibold tracking-[0.15em] uppercase text-white">
+                      {o.tag}
+                    </div>
 
-                  {/* content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#2a9d8f]/20 border border-[#2a9d8f]/40">
-                      <Icon className="text-[#7dd8cc] text-sm" />
+                    {/* content */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary-20 border border-primary-40 group-hover:bg-primary-30 transition-colors">
+                        <Icon className="text-primary text-base" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-white leading-snug">{o.title}</h3>
+                      <p className="mt-2 text-sm text-white/60 leading-relaxed line-clamp-2 transition-all duration-500 group-hover:text-white/80">
+                        {o.desc}
+                      </p>
+                      <div className="mt-4 flex items-center gap-2 text-primary text-sm font-semibold opacity-0 translate-y-2 transition-all duration-400 group-hover:opacity-100 group-hover:translate-y-0">
+                        Explore <FaArrowRight className="text-xs" />
+                      </div>
                     </div>
-                    <h3 className="text-base font-semibold text-white leading-snug">{o.title}</h3>
-                    <p className="mt-2 text-xs text-white/50 leading-relaxed line-clamp-2 transition-all duration-500 group-hover:text-white/70">
-                      {o.desc}
-                    </p>
-                    <div className="mt-4 flex items-center gap-2 text-[#7dd8cc] text-xs font-semibold opacity-0 translate-y-2 transition-all duration-400 group-hover:opacity-100 group-hover:translate-y-0">
-                      Explore <FaArrowRight className="text-[9px]" />
-                    </div>
-                  </div>
-                </Link>
+                  </Link>
+                </motion.div>
               )
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
           5. FULL-BLEED FEATURE BANNER
       ══════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-white" style={{ height: '480px' }}>
-        {/* background image removed - using white background for a clean look */}
-
-        <div className="relative z-10 flex h-full flex-col justify-center px-8 sm:px-16 lg:px-24 max-w-[1400px] mx-auto">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="h-px w-8 bg-[#7dd8cc]" />
-            <span className="text-[10px] font-semibold tracking-[0.28em] text-[#7dd8cc] uppercase">Kalpitiya Lagoon</span>
-          </div>
-          <h2
-            className="max-w-xl text-4xl sm:text-5xl text-[#071e1c] leading-tight"
-            style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}
+      <section className="relative overflow-hidden bg-white py-24 lg:py-32 px-6">
+        <div className="mx-auto max-w-6xl grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            {...fadeInUp}
           >
-            Sri Lanka's premier<br />
-            <em className="text-[#7dd8cc]">kitesurfing destination</em>
-          </h2>
-          <p className="mt-5 max-w-sm text-sm text-[#071e1c]/70 leading-relaxed">
-            Consistent trade winds, flat warm water, and expert guides make
-            Kalpitiya the top kite spot in Asia — right at our doorstep.
-          </p>
-          <Link
-            to="/kitesurfing"
-            className="mt-8 inline-flex w-fit items-center gap-3 rounded-full border border-[#7dd8cc]/50 px-7 py-3.5 text-xs font-semibold tracking-[0.14em] uppercase text-[#7dd8cc] transition hover:bg-[#7dd8cc]/10"
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-12 bg-primary" />
+              <span className="text-[11px] font-semibold tracking-[0.25em] text-primary uppercase">Kalpitiya Lagoon</span>
+            </div>
+              <h2
+              className="text-4xl sm:text-5xl lg:text-6xl text-primary leading-tight"
+              style={{ fontFamily: 'var(--font-display)', fontWeight: 300 }}
+            >
+              Sri Lanka's premier<br />
+              <em className="text-primary">kitesurfing destination</em>
+            </h2>
+            <p className="mt-6 text-base text-primary-70 leading-relaxed font-light">
+              Consistent trade winds, flat warm water, and expert guides make
+              Kalpitiya the top kite spot in Asia — right at our doorstep.
+            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Link
+                to="/kitesurfing"
+                className="mt-8 inline-flex items-center gap-3 rounded-full border-2 border-primary-40 px-8 py-4 text-sm font-semibold tracking-[0.1em] uppercase text-primary transition hover:bg-primary-10 hover:border-primary"
+              >
+                Learn More <FaArrowRight className="text-xs" />
+              </Link>
+            </motion.div>
+          </motion.div>
+          <motion.div
+            className="relative"
+            {...fadeInUp}
+            transition={{ delay: 0.15 }}
           >
-            Learn More <FaArrowRight className="text-[10px]" />
-          </Link>
+            <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <motion.img
+                src={heroImage}
+                alt="Kitesurfing at Kalpitiya Lagoon"
+                className="h-full w-full object-cover"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.7 }}
+              />
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
           6. GALLERY STRIP
       ══════════════════════════════════════════ */}
-      <div className="overflow-hidden bg-[#f0faf8] py-5 border-y border-[#2a9d8f]/10">
-        <div className="photo-strip-track flex w-max gap-4">
+      <div className="overflow-hidden bg-gray-50 py-8 border-y border-gray-200">
+        <motion.div 
+          className="photo-strip-track flex w-max gap-5"
+          animate={{ x: [0, -1200] }}
+          transition={{ 
+            duration: 40, 
+            repeat: Infinity, 
+            ease: "linear",
+            repeatType: "loop"
+          }}
+        >
           {loopStrip.map((p, i) => (
-            <figure key={`${p.alt}-${i}`} className="m-0 h-56 w-72 flex-shrink-0 overflow-hidden rounded-xl lg:h-72 lg:w-96">
+            <figure 
+              key={`${p.alt}-${i}`} 
+              className="m-0 h-64 w-80 flex-shrink-0 overflow-hidden rounded-xl lg:h-72 lg:w-96 shadow-sm"
+            >
               <img
                 src={p.src}
                 alt={i < galleryStrip.length ? p.alt : ''}
-                className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                className="h-full w-full object-cover"
                 style={{ objectPosition: p.pos }}
               />
             </figure>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* ══════════════════════════════════════════
           7. TESTIMONIALS
       ══════════════════════════════════════════ */}
-      <section className="bg-white py-24 px-6">
+      <section className="bg-white py-28 px-6">
         <div className="mx-auto max-w-4xl text-center">
 
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-px w-8 bg-[#7dd8cc]/50" />
-            <span className="text-[10px] font-semibold tracking-[0.28em] text-[#7dd8cc] uppercase">Guest Stories</span>
-            <div className="h-px w-8 bg-[#7dd8cc]/50" />
-          </div>
+          <motion.div 
+            className="flex items-center justify-center gap-3 mb-5"
+            {...fadeInUp}
+          >
+            <div className="h-px w-12 bg-primary-50" />
+            <span className="text-[11px] font-semibold tracking-[0.25em] text-primary uppercase">Guest Stories</span>
+            <div className="h-px w-12 bg-primary-50" />
+          </motion.div>
 
-          <h2
-            className="text-4xl sm:text-5xl text-[#071e1c] mb-14"
+          <motion.h2
+            className="text-4xl sm:text-5xl text-primary mb-16"
             style={{ fontFamily: 'var(--font-display)', fontWeight: 300 }}
+            {...fadeInUp}
+            transition={{ delay: 0.1 }}
           >
             What our guests say
-          </h2>
+          </motion.h2>
 
           {/* testimonial card */}
-          <div className="relative bg-white border border-gray-200 rounded-2xl px-8 sm:px-14 py-12 shadow-sm">
-            <div className="flex justify-center gap-1 mb-6">
+          <motion.div 
+            className="relative bg-white border border-gray-200 rounded-2xl px-10 sm:px-16 py-14 shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            key={activeTestimonial}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex justify-center gap-1.5 mb-8">
               {[...Array(testimonials[activeTestimonial].stars)].map((_, i) => (
-                <FaStar key={i} className="text-[#e76f51] text-sm" />
+                <FaStar key={i} className="text-[#e76f51] text-base" />
               ))}
             </div>
-            <p
-              className="text-xl sm:text-2xl text-[#071e1c] leading-relaxed italic"
+              <p
+              className="text-xl sm:text-2xl text-[#071e1c] leading-relaxed italic font-light"
               style={{ fontFamily: 'var(--font-display)', fontWeight: 300 }}
             >
               {testimonials[activeTestimonial].text}
             </p>
-            <div className="mt-8 flex flex-col items-center gap-1">
-              <p className="text-sm font-semibold text-[#0b3d3a]">{testimonials[activeTestimonial].name}</p>
-              <p className="text-xs text-gray-500 tracking-wide">{testimonials[activeTestimonial].origin}</p>
+            <div className="mt-10 flex flex-col items-center gap-2">
+              <p className="text-base font-semibold text-primary">{testimonials[activeTestimonial].name}</p>
+              <p className="text-sm text-gray-500 tracking-wide">{testimonials[activeTestimonial].origin}</p>
             </div>
-          </div>
+          </motion.div>
 
           {/* controls */}
-          <div className="mt-8 flex items-center justify-center gap-4">
+          <motion.div 
+            className="mt-10 flex items-center justify-center gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <button
               onClick={prev}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition hover:border-[#7dd8cc]/50 hover:text-[#7dd8cc]"
+              className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-gray-200 text-gray-500 transition hover:border-primary hover:text-primary hover:shadow-md"
             >
-              <FaChevronLeft className="text-xs" />
+              <FaChevronLeft className="text-sm" />
             </button>
             <div className="flex gap-2">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveTestimonial(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${i === activeTestimonial ? 'w-6 bg-[#2a9d8f]' : 'w-1.5 bg-white/20'}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${i === activeTestimonial ? 'w-8 bg-primary' : 'w-2 bg-gray-200'}`}
                 />
               ))}
             </div>
             <button
               onClick={next}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition hover:border-[#7dd8cc]/50 hover:text-[#7dd8cc]"
+              className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-gray-200 text-gray-500 transition hover:border-primary hover:text-primary hover:shadow-md"
             >
-              <FaChevronRight className="text-xs" />
+              <FaChevronRight className="text-sm" />
             </button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          8. CTA BANNER
-      ══════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-[#f7fffe] py-28 px-6">
-        {/* decorative teal circles removed */}
-
-     
-      </section>
 
     </div>
   )
