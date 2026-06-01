@@ -105,11 +105,10 @@ export default function Home() {
         />
 
         {/* teal-to-transparent gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0b3d3a]/35 via-[#0b3d3a]/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071e1c]/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0b3d3a]/25 via-[#0b3d3a]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071e1c]/40 via-transparent to-transparent" />
 
-        {/* top teal bar */}
-        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#2a9d8f] via-[#52b5a8] to-[#2a9d8f]" />
+        {/* top teal bar removed as requested */}
 
         {/* content — left aligned */}
         <div className="relative z-10 flex h-full flex-col justify-center px-8 sm:px-16 lg:px-24 max-w-[1400px] mx-auto">
@@ -317,9 +316,8 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           5. FULL-BLEED FEATURE BANNER
       ══════════════════════════════════════════ */}
-      <section className="relative overflow-hidden" style={{ height: '480px' }}>
-        <img src={heroImage} alt="Kalpitiya lagoon" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b3d3a]/90 via-[#0b3d3a]/60 to-transparent" />
+      <section className="relative overflow-hidden bg-white" style={{ height: '480px' }}>
+        {/* background image removed - using white background for a clean look */}
 
         <div className="relative z-10 flex h-full flex-col justify-center px-8 sm:px-16 lg:px-24 max-w-[1400px] mx-auto">
           <div className="flex items-center gap-3 mb-5">
@@ -327,13 +325,13 @@ export default function Home() {
             <span className="text-[10px] font-semibold tracking-[0.28em] text-[#7dd8cc] uppercase">Kalpitiya Lagoon</span>
           </div>
           <h2
-            className="max-w-xl text-4xl sm:text-5xl text-white leading-tight"
-            style={{ fontFamily: 'var(--font-display)', fontWeight: 300 }}
+            className="max-w-xl text-4xl sm:text-5xl text-[#071e1c] leading-tight"
+            style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}
           >
             Sri Lanka's premier<br />
             <em className="text-[#7dd8cc]">kitesurfing destination</em>
           </h2>
-          <p className="mt-5 max-w-sm text-sm text-white/60 leading-relaxed">
+          <p className="mt-5 max-w-sm text-sm text-[#071e1c]/70 leading-relaxed">
             Consistent trade winds, flat warm water, and expert guides make
             Kalpitiya the top kite spot in Asia — right at our doorstep.
           </p>
