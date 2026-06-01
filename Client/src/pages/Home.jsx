@@ -10,6 +10,7 @@ import blueResort from '../assets/images/bluewhale resort.png'
 import heroVideo from '../assets/videos/web.mp4'
 import heroImage   from '../assets/hero.png'
 import '../styles/home.css'
+import siteLogo from '../assets/images/Untitled design.png'
 
 /* ─── data ─────────────────────────────────────────── */
 const stats = [
