@@ -147,9 +147,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Escape to the<br />
-            <span className="italic text-primary">Edge of the</span><br />
-            Ocean
+            <br />
+            <span className="italic text-primary"></span><br />
+            
           </motion.h1>
 
           <motion.p 
@@ -157,14 +157,15 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            A boutique beachfront sanctuary in Kalpitiya — where pristine
-            lagoons, trade winds, and tropical warmth create the perfect escape.
+          ><br /> <br /> <br /> <br /> <br /> 
+           A beachfront escape in Kalpitiya with tropical stays, kitesurfing adventures, lagoon experiences and unforgettable sunsets.
+
+
           </motion.p>
 
           {/* CTAs */}
           <motion.div 
-            className="mt-12 flex flex-wrap items-center gap-5"
+            className="mt-16 flex flex-wrap items-center gap-5 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -176,15 +177,8 @@ export default function Home() {
               Reserve a Room
               <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
             </Link>
-            <button className="inline-flex items-center gap-3 text-sm font-medium tracking-[0.12em] uppercase text-white/80 transition hover:text-white">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/40 transition hover:border-white/70 hover:bg-white/10">
-                <FaPlay className="text-xs ml-0.5" />
-              </span>
-              Watch Film
-            </button>
           </motion.div>
         </div>
-
         {/* scroll cue */}
         <motion.div 
           className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
@@ -197,40 +191,16 @@ export default function Home() {
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          <span className="text-[10px] tracking-[0.25em] text-white/50 uppercase font-medium">Scroll</span>
+          <span className="text-[10px] tracking-[0.25em] text-white/50 uppercase font-medium"></span>
         </motion.div>
 
-        {/* floating stats card */}
-            <motion.div 
-              className="absolute bottom-12 right-8 sm:right-16 z-10 hidden sm:grid grid-cols-2 gap-px bg-white/5 backdrop-blur-lg border border-white/10 overflow-hidden rounded-lg"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          {stats.map((s, i) => (
-            <motion.div 
-                  key={s.label} 
-                  className="flex flex-col items-center justify-center gap-1 px-8 py-5 bg-primary-50 hover:bg-primary-60 transition-colors"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.7 + i * 0.08 }}
-            >
-              <span className="text-2xl font-semibold text-primary">{s.value}</span>
-              <span className="text-[10px] tracking-[0.2em] text-white/60 uppercase font-medium">{s.label}</span>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* floating stats card removed per request */}
       </section>
 
       {/* ══════════════════════════════════════════
           2. INTRO STRIP
       ══════════════════════════════════════════ */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="mx-auto max-w-6xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-          {/* intro paragraph removed */}
-          {/* ratings removed */}
-        </div>
-      </div>
+    
 
       {/* ══════════════════════════════════════════
           3. ABOUT — split layout
